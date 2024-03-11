@@ -34,3 +34,13 @@ Start time: 5:45pm
 Finish time: 6:05pm
 
 Actual time needed to complete: 20 minutes
+
+Name of feature: Weather (placeholder): As a user of City Explorer, I want to see weather info for the city I searched, so that I know how to pack for an upcoming trip.
+
+Estimate of time needed to complete: 2 hours
+
+Start time: 6:05pm
+
+Finish time: 
+
+Actual time needed to complete: 
