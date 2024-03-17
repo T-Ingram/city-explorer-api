@@ -5,14 +5,15 @@ searchForm.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const cityInput = event.target['city-input'].value;
-  const latInput = event.target['lat-input'].value;
-  const lonInput = event.target['lon-input'].value;
 
   try {
 
-    const response = await fetch(`http://localhost:3000/weather?name=${cityInput}&lat=${latInput}&lon=${lonInput}`);
-    const cityData = await response.json();
-    console.log(cityData)
+    const cityResponse = await fetch(`http://localhost:3000/city?name=${cityInput}`);
+    const cityData = await cityResponse.json();
+    console.log(cityData);
+    const weatherResponse = await fetch(`http://localhost:3000/weather?name=${cityInput}&lat=${cityData.lat}&lon=${cityData.lon}`);
+    const weatherData = await weatherResponse.json();
+    console.log(weatherData)
 
     const parent = document.getElementById('weather-info');
     const heading = document.createElement('h2');
@@ -21,21 +22,3 @@ searchForm.addEventListener('submit', async (event) => {
     console.error('Error fetching data:', error);
   }
 });
-
-
-
-// // Check if city data contains lat and lon
-// if (cityData.lat && cityData.lon) {
-//     // Fetch weather data using lat and lon
-//     const weatherResponse = await fetch(`/weather?lat=${cityData.lat}&lon=${cityData.lon}`);
-//     const weatherData = await weatherResponse.json();
-
-//     // Display weather information
-//     weatherInfoDiv.innerHTML = `<h2>Weather for ${cityInput}</h2>`;
-//     weatherData.forEach(day => {
-//         weatherInfoDiv.innerHTML += `<p>Date: ${day.date}, Description: ${day.description}</p>`;
-//     });
-// } else {
-//     // Handle case where lat and lon are not available
-//     console.error('Latitude and longitude information not found for the city.');
-// }
